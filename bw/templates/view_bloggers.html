@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        View Blogger's Portal
+    </title>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+
+    .student-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 10px 10px 15px rgba(0, 0, 0, 0.5);
+    }
+    .student-card:hover{
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 10px 10px 15px rgba(0, 0, 0, 0.9);
+    }
+
+    .student-card img {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto 15px;
+    }
+
+    .student-card h5 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .student-card .list-group-item {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .student-card .card-body {
+        padding: 0;
+    }
+
+    .approve-btn,
+    .reject-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .container-fluid {
+        padding: 0;
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+    <header class="bg-primary text-white py-3">
+        <div class="container text-center">
+                <h1>APPROVE BLOGGERS</h1>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                    View Blogger's Portal
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'owner_portal' %}">Back</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% if messages %}
+<div class="container-fluid mt-4">
+    {% for message in messages %}
+        <div id="alert-{{ forloop.counter }}" class="alert alert-dismissible fade show {% if message.tags == 'success' %}alert-success{% elif message.tags == 'info' %}alert-info{% elif message.tags == 'warning' %}alert-warning{% elif message.tags == 'error' %}alert-danger{% endif %}" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById("alert-{{ forloop.counter }}").style.display = "none";
+            }, 2000); 
+        </script>
+    {% endfor %}
+</div>
+{% endif %}
+<div class="container mt-4">
+    <div class="row">
+        {% for blogger in bloggers %}
+            <div class="col-md-6">
+                <div class="card mb-4 student-card">
+                    <img src="{{ blogger.profile_image.url }}" class="card-img-top" alt="{{ blogger.first_name }}'s Profile">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ blogger.first_name }} {{ blogger.last_name }}</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Father's Name:</strong> {{ blogger.father_name }}</li>
+                            <li class="list-group-item"><strong>Email:</strong> {{ blogger.email }}</li>
+                            <li class="list-group-item"><strong>Username:</strong> {{ blogger.username }}</li>
+                            <li class="list-group-item"><strong>Blogger ID:</strong> {{ blogger.id }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

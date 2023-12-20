@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BLOGGING WEBSITE</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+<style>
+
+    .navbar-nav .nav-link {
+        position: relative;
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+        background-color: ORANGE;
+        color: white;
+        border-color: ORANGE;
+    }
+
+    .h-custom {
+        height: 600px;
+        object-fit: cover;
+    }
+
+    .carousel-indicators {
+        position: relative;
+        top: 100%;
+        right: 0;
+        text-align: center;
+        background: transparent;
+        z-index: 1;
+    }
+
+    .carousel-indicators li {
+        width: 50px;
+        height: 50px;
+        top: 100%;
+        border-radius: 50%;
+        margin: 0 5px;
+        background-color: transparent;
+        border: 2px solid transparent;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+    }
+
+    .carousel-indicators .indicator-image {
+        position: relative;
+        top: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        border: 0.5px solid black;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        transition: width 0.3s ease, height 0.3s ease;
+    }
+
+    .carousel-indicators .indicator-image:hover {
+        width: 150%;
+        height: 150%;
+    }
+    
+    .carousel-indicators {
+        bottom: 50px;
+    }
+
+    .carousel-indicators li {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+    }
+
+    .text-box {
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 5%;
+        border-radius: 10px;
+        text-align: center;
+        position: relative;
+        top: -90px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .text-box p {
+        font-size: 10px;
+        margin: -10px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    @media (max-width: 768px) {
+        .text-box {
+            width: 100%;
+            top: -90px;
+            left: 0;
+            transform: none;
+            transform: translate(0%, 0%);
+        }
+        .text-box p{
+            font-size: 10px;
+        }
+    }
+    
+    .text-white {
+        color: #fff;
+    }
+
+    .transparent-box-automate {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 1%;
+        border-radius: 10px;
+        position: relative;
+        top: -200px;
+        width: 40%;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        left: 75%;
+        font-size: 12px;
+        text-align: justify;
+    }
+
+    .transparent-box-re {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 1%;
+        border-radius: 10px;
+        position: relative;
+        top: -200px;
+        width: 40%;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        left: 75%;
+        font-size: 12px;
+        text-align: justify;
+    }
+
+    .transparent-box-data {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 3%;
+        border-radius: 10px;
+        position: relative;
+        left: -20%;
+        top: -200px;
+        width: 40%;
+        text-align: justify;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 12px;
+    }
+
+    .transparent-box-online {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 3%;
+        border-radius: 10px;
+        position: relative;
+        left: -20%;
+        top: -150px;
+        width: 30%;
+        text-align: justify;
+        font-size: 12px;
+
+    }
+
+    .online_para {
+        font-size: 12px;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    @media (max-width: 768px) {
+        .transparent-box-automate{
+            width: 100%;
+            max-width: 100%;
+            top: 50%;
+            left: 50%;
+            font-size: 10px;
+            transform: translate(-50%, -110%);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .transparent-box-data {
+            width: 100%;
+            max-width: 100%;
+            top: 50%;
+            left: 50%;
+            font-size: 10px;
+            transform: translate(-50%, -100%);
+        }
+        .online_para {
+            font-size: 10px;
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .transparent-box-online {
+            padding:1%;
+            width: 100%;
+            max-width: 100%;
+            top: 50%;
+            left: 50%;
+            font-size: 10px;
+            margin-bottom: 10px;
+            transform: translate(-50%, -100%);
+        }
+    }
+    @media (max-width: 768px) {
+        .transparent-box-re{
+            width: 100%;
+            max-width: 100%;
+            top: 50%;
+            left: 50%;
+            font-size: 10px;
+            transform: translate(-50%, -70%);
+        }
+    }
+
+    .user-section {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .user-section:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .user-section p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+    }
+    .carousel-caption1 {
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .carousel-caption1 h2 {
+        font-size: 150%;
+        color: blue;
+    }
+    
+    .carousel-caption1 p {
+        font-size: 100%;
+        color: black;
+    }
+    
+    .carousel-item img {
+        width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    
+    @media (max-width: 768px) {
+        .carousel-caption1 {
+            margin: 10px;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+
+        }
+    
+        .carousel-caption1 h2 {
+            font-size: 130%;
+        }
+    
+        .carousel-caption1 p {
+            font-size: 80%;
+        }
+    
+        .carousel-item img {
+            width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+    }
+    
+    .container-fluid {
+        padding: 0;
+        margin: 0;
+    }
+    #show_blg{
+        margin: 20px;
+    }
+    #crd_pg{
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 10px 10px 15px rgba(0, 0, 0, 0.5);
+        
+    }
+    #crd_pg:hover{
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 10px 10px 15px rgba(0, 0, 0, 0.9);
+    }
+
+    @media (max-width: 768px) {
+        #crd_pg{
+            width: 70%;
+            margin: auto;
+        }
+    }
+
+    #main_img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    #gradient-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    }
+    .main_txt {
+        position: absolute;
+        top: 330px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        margin: auto;
+    }
+    .main_txt h1{
+        font-size: 150%;
+    }
+
+</style>
+</head>
+<body>
+<div class='container-fluid'>
+    <header class="bg-dark text-white py-1">
+        <div class="container text-center">
+            <h1>BLOGGING WEBSITE</h1>
+        </div>
+    </header>
+</div>
+<div class='container-fluid'>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">BLOGGING WEBSITE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about_us' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            User Login
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{% url 'user_login' %}">Blogger's Login</a>
+                            <a class="dropdown-item" href="{% url 'owner_login' %}">Owner Login</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="signInDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sign Up
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="signInDropdown">
+                            <a class="dropdown-item" href="{% url 'register' %}">Blogger's Sign Up</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class='container-fluid'>
+    <div id="imageCarousel" class="carousel slide" data-ride="carousel" data-interval="5000" style="height: 400px; width: 100%; overflow: hidden; margin-top: 20px;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="media/home_images/main.webp" alt="Image 1" id="main_img" style="width: 100%; height: 500px;">
+                    <div class="carousel-caption">
+                        <div class='container-fluid'>
+                            <div class="text-box">
+                                <div class="online_para">
+                                    <h3>WELCOME TO OUR BLOGGER'S WEBSITE</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="media/home_images/main2.webp" alt="Image 2" style="width: 100%; height: 500px;">
+                    <div class="carousel-caption">
+                        <div class='container-fluid'>
+                            <div class="text-box">
+                                <p class="online_para">
+                                    Embark on a journey of self-expression and creativity by joining our blogger's community. Here, your dreams find a home in captivating words. Whether you're an aspiring writer or seasoned blogger, our platform offers a seamless experience to share your unique perspective. Unleash your creativity, connect with a global audience, and let your dreams take center stage. Start your blogging adventure today and become part of a community where every word has the power to inspire. Join us in transforming dreams into captivating blogs! 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="media/home_images/main3.webp" alt="Image 3" style="width: 100%; height: 500px;">
+                    <div class="carousel-caption">
+                        <div class='container-fluid'>
+                            <div class="transparent-box-data">
+                                <p class="online_para">
+                                    Enjoy a seamless user experience on any device! Our website is fully responsive, adapting effortlessly to your desktop, tablet, or smartphone. Explore our content with ease, ensuring a consistent and enjoyable experience wherever you are. Your journey begins, anytime you choose!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="media/home_images/report.webp" alt="Image 4" style="width: 100%; height: 500px;">
+                    <div class="carousel-caption">
+                        <div class="transparent-box-data">
+                            <p class="online_para">
+                                Found a blog that needs attention? Use our easy reporting feature. Click, share details, and our team will take swift action. Your vigilance keeps our community positive and respectful. Thanks for being proactive!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="media/home_images/main4.webp" alt="Image 4" style="width: 100%; height: 500px;">
+                    <div class="carousel-caption">
+                        <div class="transparent-box-automate">
+                            <p class="online_para">
+                                At our platform, transparency is key. Our system ensures you're always in the loop. Receive timely email updates on your registration request and reported blog status. We value your engagement and believe in keeping you informed every step of the way. Thanks for being part of our community!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="media/home_images/main6.webp" alt="Image 4" style="width: 100%; height: 500px;">
+                    <div class="carousel-caption">
+                        <div class="transparent-box-data">
+                            <p class="online_para">
+                                Ready to dive into the world of inspiring stories and creative expression? Log in to your account and continue your blogging journey. Your words matter, and we can't wait to see what you have to share with the world. Let's create and connect together! 
+                            </p>
+                            <a href="{% url 'user_login' %}" class="btn btn-primary">Log In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="media/home_images/main5.webp" alt="Image 5" style="width: 100%; height: 500px;">
+                    <div class="carousel-caption">
+                        <div class="transparent-box-re">
+                            <p class="online_para">
+                                Ready to unleash your creativity and share your unique perspective with the world? It's time to join our vibrant community of bloggers. Create your account now to start crafting inspiring stories and connecting with like-minded individuals. Your voice matters, and we can't wait to see the magic you'll bring to our blogging platform. Let's get started on this exciting adventure together!
+                            </p>
+                            <a href="{% url 'register' %}" class="btn btn-primary">Register Yourself</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="col-md-6 col-sm-8">
+                        <img src="media/home_images/about.webp" alt="Image 9" class="img-fluid" style="width: 80%; height: 400px;margin-left: 100px">
+                    </div>
+                    <div class="col-md-6 col-sm-8">
+                        <div class="carousel-caption1">
+                            <h2>ABOUT US</h2>
+                            <p>
+                                We are a dedicated team of students from Usman Institute of Technology (UIT) with a passion for solving real-world problems. Our journey began in 2021, and we are excited to present our School Van Management System, designed to streamline transportation for students, drivers, and van owners. Learn more about us!
+                            </p>
+                            <div class="cap-button">
+                                <a href="{% url 'about_us' %}" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="col-md-6 col-sm-8">
+                        <img src="media/home_images/contact.webp" alt="Image 10" style="width: 80%; height: 400px;margin-left: 100px;">
+                    </div>
+                    <div class="col-md-6 col-sm-8">
+                        <div class="carousel-caption1">
+                            <h2>CONTACT US</h2>
+                            <p>
+                                Have questions or need assistance with our School Van Management System? Feel free to get in touch with us. Our dedicated support team is here to help you with any inquiries or issues you may have. We value your feedback and look forward to assisting you.
+                            </p>
+                            <div class="cap-button">
+                                <a href="{% url 'contact_us' %}" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                       
+        </div>
+    </div>
+    <ol class="carousel-indicators">
+        <li data-target="#imageCarousel" data-slide-to="0" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/main.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="1" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/main2.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="2" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/main3.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="3" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/report.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="4" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/main4.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="5" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/main6.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="6" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/main5.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="7" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/about.webp');"></div>
+        </li>
+        <li data-target="#imageCarousel" data-slide-to="8" class="active">
+            <div class="indicator-image" style="background-image: url('media/home_images/contact.webp');"></div>
+        </li>
+    </ol>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4" id="show_blg">
+    {% for blog in top_blogs %}
+    <div class="col" style="padding-bottom: 20px;">
+        <div class="card h-100" id="crd_pg">
+            <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}" style="height: 350px; overflow: hidden;">
+            <div class="card-body">
+                <h5 class="card-title">{{ blog.title }}:</h5>
+                <p class="card-text">{{ blog.description|truncatewords:20 }}</p>
+                    <a href="{% url 'user_login' %}" class="btn btn-link">See More</a>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated {{ blog.created_at|timesince }} ago</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="container-fluid" >
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-white">Home</a></li>
+                        <li><a href="{% url 'about_us' %}" class="text-white">About</a></li>
+                        <li><a href="{% url 'contact_us' %}" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>User Login</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'user_login' %}" class="text-white">Blogger's Login</a></li>
+                        <li><a href="{% url 'owner_login' %}" class="text-white">Owner Login</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Sign In</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'register' %}" class="text-white">Blogger's Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <small>&copy; 2023 UIT 3Ediots Group - All rights reserved</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add New Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .blogs_main {
+            height: auto;
+            width: 80%;
+            border-radius: 10px;
+            margin: auto;
+            margin-top: 35px;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 10px 10px 15px rgba(0, 0, 0, 0.5);
+        }
+        .blogs_main:hover{
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 10px 10px 15px rgba(0, 0, 0, 0.9);
+        }
+        .blogs_sub{
+            margin: auto;
+            width: auto;
+            height: auto;
+            padding: 10px;
+        }
+        .blog_img{
+            margin: auto;
+            width: auto;
+            height: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), 10px -10px 15px rgba(0, 0, 0, 0.5);
+        }
+        .blog_desc{
+            color: black;
+            margin: auto;
+            padding: 20px;
+            width: auto;
+            height: 45%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), 10px 10px 15px rgba(0, 0, 0, 0.5);
+        }
+        .blog_desc p{
+            font-size: 14px;
+        }
+
+        .blog_btns {
+            margin: auto;
+            width: auto;
+            height: 6%;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            @media (max-width: 768px) {
+                height: auto;
+                font-size: 8px;
+                flex-direction: column;
+            }
+        }
+
+        .blog_btns button {
+            flex: 1;
+            margin: 0 50px;
+            
+
+            @media (max-width: 768px) {
+                flex: 0 1 100%;
+                margin: 10px 0;
+                width: 100%;
+                font-size: small;
+                
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header class="bg-primary text-white py-3">
+    <div class="container text-center">
+        <h1>My Blogs Portal</h1>
+    </div>
+</header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Add Blog Portal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blogger_portal' blogger.id %}">Back</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% for blog in blogs %}
+    <div class="blogs_main" style="background-color: white;">
+        <div class="blogs_sub">
+            <div class="blog_img">
+                <img src="{{ blog.image.url }}" style="width: 100%; height: 100%;" alt="Main Image">
+            </div>
+            <div class="blog_desc">
+                <div class="d-flex align-items-center" style="margin-bottom: 22px;">
+                    <img class="rounded-circle shadow-1-strong me-2" src="{{ blog.blogger_id.profile_image.url }}" alt="avatar" width="45" height="45" />
+                    <div>
+                        <span class="badge bg-primary" style="border-radius: 10px; margin-left: 12px;">
+                            <h6 class="mb-0" style="font-size: 14px; color: #fff;">{{ blog.blogger_id.first_name }}</h6>
+                            <p class="text-white" style="font-size: 10px;">Last updated {{ blog.created_at|timesince }} ago</p>
+                        </span>
+                    </div>
+                </div>                
+                      
+                <h3>{{ blog.title }}:</h3>
+                <p class="short-description" data-full-description="{{ blog.description }}">{{ blog.description|slice:":1000"|linebreaks }}</p>
+                <button type="button" class="btn btn-link read-more-btn">...See more</button>
+            </div>
+            <div class="blog_btns">
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#updateModal{{ blog.id }}">
+                    <i class="bi bi-exclamation-diamond"></i> Update
+                </button>
+
+                <div class="modal fade" id="updateModal{{ blog.id }}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel{{ blog.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateModalLabel{{ blog.id }}">Update Blog</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'update_blog' blogger_id=blogger.id blog_id=blog.id %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="updateTitle">Title:</label>
+                                        <input type="text" class="form-control" id="updateTitle" name="title" value="{{ blog.title }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="updateDescription">Description:</label>
+                                        <textarea class="form-control" id="updateDescription" name="description" rows="4">{{ blog.description }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="updateImage">Update Image:</label>
+                                        <input type="file" class="form-control" id="updateImage" name="image">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#commentModal{{ blog.id }}">
+                    <i class="bi bi-chat-dots"></i> Comment  <span class="like-count">{{ blog.comments.count }}</span>
+                </button>
+         
+                <div class="modal fade" id="commentModal{{ blog.id }}" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="commentModalLabel">Comments</h5>
+                                <div class="float-end mt-2 pt-1">
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal" aria-label="Close">Close</button>
+                                </div>
+                            </div>
+                            <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                                {% for comment in comments %}
+                                    {% if comment.blog == blog %}
+                                        <section style="background-color: #e7effd;">
+                                            <div class="container my-5 py-5 text-dark">
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-md-11 col-lg-9 col-xl-7">
+                                                        <div class="d-flex flex-start mb-4">
+                                                            <img class="rounded-circle shadow-1-strong me-3"
+                                                                src="{{ comment.user.profile_image.url }}" alt="avatar" width="65"
+                                                                height="65" />
+                                                            <div class="card w-100">
+                                                                <div class="card-body p-4">
+                                                                    <div class="">
+                                                                        <h5>{{ comment.user.username }}</h5>
+                                                                        <p class="small">Last updated {{ comment.created_at|timesince }} ago</p>
+                                                                        <p>{{ comment.text }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                    {% endif %}
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+                <button type="button" class="btn btn-outline-success">
+                    <i class="bi bi-heart"></i> Like <span class="like-count">{{ blog.likes.count }}</span>
+                </button>
+                <a href="{% url 'delete_blog' blogger_id=blogger.id blog_id=blog.id %}"><button type="submit" class="btn btn-danger">Delete</button></a>
+        
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
